@@ -70,3 +70,39 @@ class Buscadores ( object ) :
                 esquerda += 1
 
         return False
+
+    def mergeSort(self, vetor ) :
+
+        # caso base da recursão
+        if ( len ( vetor ) <= 1 ) :
+
+            return vetor
+
+        # caso geral pra achar o meio do vetor
+        meio = len ( vetor ) // 2
+
+        # fazendo a separação dos vetores em outros menores
+        direita = self.mergeSort ( vetor[:meio] )
+        esquerda = self.mergeSort ( vetor[meio:] )
+
+        return self.mergeSortInterno ( direita, esquerda )
+
+    def mergeSortInterno(self, direita, esquerda) :
+
+        # esses dois primeiros if são os casos base da recursão
+
+        if ( not esquerda ) :
+
+            return direita
+
+        if ( not direita ) :
+
+            return esquerda
+
+        # fazendo o caso da intercalação da nova lista
+
+        if ( esquerda[0] < direita[0] ) :
+
+            return [ esquerda[0] ] + self.mergeSortInterno ( esquerda[1:], direita )
+
+        return [ direita[0] ] + self.mergeSortInterno ( esquerda, direita[1:] )
