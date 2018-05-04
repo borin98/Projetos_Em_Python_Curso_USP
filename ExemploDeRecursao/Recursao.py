@@ -53,3 +53,66 @@ class FuncoesRecursivas ( object ) :
         else :
 
             return meio
+
+    def somaLista(self, vetor ) :
+
+        tam = len ( vetor ) - 1
+        aux = [] * tam
+
+        if ( tam > 0 ) :
+
+            for i in range ( tam ) :
+
+                aux.append ( vetor[i] )
+                resto = vetor[tam]
+
+            return resto + self.somaLista ( aux )
+
+        else :
+
+            return vetor[0]
+
+    def imparesEmListas(self, vetor) :
+
+        tam = len(vetor) - 1
+        aux = [] * tam
+        final = [] * tam
+        aux2 = [] * tam
+
+        if ( tam >= 0 ) :
+
+            if ( vetor[ tam ] %2 != 0 ) :
+
+                final.append ( vetor[tam] )
+
+            for i in range ( tam ) :
+
+                aux.append ( vetor[i] )
+
+            aux2.extend ( self.imparesEmListas ( aux ) )
+            final.extend ( aux2 )
+
+        return final
+
+    def organizaVetor(self, vetor) :
+
+        tam = len ( vetor ) - 1
+
+        for i in range ( len ( vetor ) ) :
+
+            if ( i < tam/2 ) :
+                vetor[i], vetor[tam - i] = vetor[tam - i], vetor[i]
+
+        return vetor
+
+    def incomodam(self, n) :
+
+        if ( n == 1 ) :
+
+            return "um elefante incomoda muita gente"
+
+        else :
+
+            print ( "{} elefantes incomodam muita gente".format ( n ) )
+            String = str ( n ) + "elefantes "+ ( "incomodam "*n ) + "muito mais"
+            return String
